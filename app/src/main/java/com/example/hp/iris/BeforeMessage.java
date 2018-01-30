@@ -28,6 +28,7 @@ public class BeforeMessage extends AppCompatActivity implements TextToSpeech.OnI
     RecognitionProgressView recognitionProgressView;
     private TextToSpeech tvvs;
     TextToSpeech myTTS;
+    RelativeLayout layout;
     private int MY_DATA_CHECK_CODE = 0;
 
     @Override
@@ -36,6 +37,7 @@ public class BeforeMessage extends AppCompatActivity implements TextToSpeech.OnI
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_before_message);
+        layout=(RelativeLayout)findViewById(R.id.layout);
         Intent checkTTSIntent = new Intent();
         checkTTSIntent
                 .setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
@@ -107,6 +109,13 @@ public class BeforeMessage extends AppCompatActivity implements TextToSpeech.OnI
                 }
 
 
+            }
+        });
+        layout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startActivity(new Intent(BeforeMessage.this,MainActivity.class));
+                return false;
             }
         });
     }
